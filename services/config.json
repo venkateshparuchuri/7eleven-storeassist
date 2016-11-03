@@ -1,0 +1,12 @@
+{
+   "environment": "dev",
+   "debug": true,
+   "dbhost": "localhost", "dbname":"storeAssist", "dbuser":"root", "dbpass":"root",
+   "messagedbhost": "pushkardb.scriptbees.com", "messagedbname":"message_db", "messagedbuser":"mohan", "messagedbpass":"mohan1$",
+   "bakerydbhost": "ccdb.scriptbees.com", "bakerydbname":"bakery", "bakerydbuser":"mohan", "bakerydbpass":"mohan1$",
+   "moneyorder_server":"pushkardb.scriptbees.com", "moneyorder_db":"message_db", "moneyorder_user":"mohan", "moneyorder_password":"mohan1$",
+   "logfile": "storeassist.log",
+   "logtime": "midnight",
+   "host" : "0.0.0.0",
+   "extracts_location": "/var/extracts"
+}

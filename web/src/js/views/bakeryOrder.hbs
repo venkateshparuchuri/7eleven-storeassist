@@ -1,0 +1,53 @@
+
+<div class="row">
+    <div class="col-sm-8 col-sm-offset-2">
+        <table class="table">
+            <thead>
+                <tr class="card">
+                    <th>Items Name</th>
+                    <th>On Hand</th>
+                    <th>Return</th>
+                </tr>
+            </thead>
+            <tbody class="js-bakeryOrdersBody">
+                {{#each rows}}
+                   {{#equaltoo active 'Complete'}}
+                   <tr class="card" data-requests_id="{{requests_id}}" data-name="{{descr}}" data-id="{{id}}" data-nbr="{{nbr}}" data-pick_nbr="{{pick_nbr}}" data-sku="{{sku}}">
+                       <td class="js-productName">
+                           {{descr}}
+                       </td>
+                       <td>
+                           <input type="number" min=0 onkeypress='return event.charCode >= 48 && event.charCode <= 57' class="form-control js-productQtyOnHand"  value="{{on_hand_qty}}" disabled>
+                       </td>
+                       <td>
+                           <input type="number" min=0 onkeypress='return event.charCode >= 48 && event.charCode <= 57' class="form-control js-productQtyReturn"  value="{{return_qty}}" disabled>
+                       </td>
+                   </tr>
+                    {{else}}
+                    <tr class="card" data-requests_id="{{requests_id}}" data-name="{{descr}}" data-id="{{id}}" data-nbr="{{nbr}}" data-pick_nbr="{{pick_nbr}}" data-sku="{{sku}}">
+                        <td class="js-productName">
+                            {{descr}}
+                        </td>
+                        <td>
+                            <input type="number" min=0 onkeypress='return event.charCode >= 45 && event.charCode <= 57' class="form-control js-productQtyOnHand"  value="{{on_hand_qty}}">
+                        </td>
+                        <td>
+                            <input type="number" min=0 onkeypress='return event.charCode >= 45 && event.charCode <= 57' class="form-control js-productQtyReturn"  value="{{return_qty}}">
+                        </td>
+                    </tr>
+                    {{/equaltoo}}
+                {{/each}}
+            </tbody>
+        </table>
+    </div>
+</div>
+{{#equaltoo status 'today'}}
+<div class="row">
+    <div class="col-sm-2 col-sm-offset-6">
+        <button class="btn btn--dark btn-block js-bakeryOrder-actions" data-accType="Save" data-loading-text="Loading...">Save</button>
+    </div>
+    <div class="col-sm-2">
+        <button class="btn btn--action btn-block js-bakeryOrder-actions" data-accType="Complete" data-loading-text="Loading...">Complete</button>
+    </div>
+</div>
+{{/equaltoo}}

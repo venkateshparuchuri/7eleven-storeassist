@@ -1,0 +1,77 @@
+<div class="row">
+    <div class="col-sm-6 col-sm-offset-2">
+        <form style="background-color: white;text-align: center;padding: 20px;border-radius: 5px">
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="row">
+                        <div class="col-sm-8">
+                            <label class="control-label col-xs-3" for="time">Date</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-sm-10">
+                            <input type="text" class="form-control js-createOrderDate" style="padding: 10px;border: none;border-bottom: solid 2px #c9c9c9;transition: border 0.3s;background-color: white;font-size: 18px;" readonly />
+                        </div>
+                        <div class="col-sm-2">
+                            <span class="fa fa-calendar fa-2x"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label class="control-label" for="intials">By</label>
+                        <input type="text" class="form-control style-4 js-empOrderIntial" name="intials" style="padding: 10px;border: none;border-bottom: solid 2px #c9c9c9;transition: border 0.3s;background-color: white;" value="{{ordered_by}}">
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-sm-6 col-sm-offset-2">
+        <form style="background-color: white;text-align: center;padding: 20px;border-radius: 5px">
+            <table class="table" cellspacing="0" width="100%">
+                <thead>
+                    <tr class="card">
+                        <th>Type</th>
+                        <th>$ Amount</th>
+                    </tr>
+                </thead>
+                <tbody id="js-createOrderBody">
+                    {{#each denominations}}
+                        <tr class="card">
+                            <td class="mytable">{{name}}</td>
+                            <td class="form-group mytable js-orderNumber">
+
+                                <input type="number" min=0 data-currencyId="{{currencyId}}" data-id="{{id}}" onkeypress='return event.charCode >= 48 && event.charCode <= 57' data-amount="{{Amount}}" step="{{#parseNumber Amount}}{{value}}{{/parseNumber}}" class="form-control js-change-entry" value="{{order_amount}}">
+
+                            </td>
+                        </tr>
+                    {{/each}}
+                    <tr class="card">
+                        <td class="mytable">Total</td>
+                        <td class="form-group mytable">
+
+                            <input type="number" min=0 class="form-control js-ordered-amountTotal" value="{{total}}" readonly>
+
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </form>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-sm-5 col-sm-offset-5">
+        <div class="row">
+            <div class="col-sm-4">
+                <button class="btn btn--dark btn-block js-order-actions" data-changeOrderId="{{changeOrderId}}" data-accType="Save" data-loading-text="Loading...">Save</button>
+            </div>
+            <div class="col-sm-4">
+                <button class="btn btn--action btn-block js-order-actions" data-changeOrderId="{{changeOrderId}}" data-accType="Complete">Complete</button>
+            </div>
+        </div>
+    </div>
+</div>

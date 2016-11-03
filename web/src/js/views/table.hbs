@@ -1,0 +1,33 @@
+
+<div class="row" style="width: 1020px">
+    <table id="example" class="display" cellspacing="0" width="100%">
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Ordered By</th>
+                <th>Order status</th>
+                <th>Total Amount</th>
+                <th>Received status</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each rows}}
+                <tr>
+                    <th>{{Date}}</th>
+                    <th>{{ordered_by}}</th>
+                    <th>{{order_status}}</th>
+                    <th>{{Total}}</th>
+                    <th>{{received_status}}</th>
+                    <th>
+                        <div class="row">
+                            <div class="col-sm-3 col-sm-offset-2">
+                                <i class="fa fa-list fa-2x js-changeOrderActions" data-changeOrderID="{{changeOrderID}}" data-total="{{Total}}" data-date="{{Date}}" data-orderBy="{{ordered_by}}" data-status="{{order_status}}" data-received_status="{{received_status}}" aria-hidden="true" style="margin-left: -6px;cursor: pointer; cursor: hand;"></i>
+                            </div>
+                        </div>
+                    </th>
+                </tr>
+            {{/each}}
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,22 @@
+<div class="row">
+  <div class="col-sm-6 col-sm-offset-3">
+    <form style="background-color: white;text-align: center;padding: 20px;border-radius: 5px">
+      {{#if number}}
+      <div class="form-group">
+          <label class="control-label" for="time">MO Number : </label>
+          <input type="text" class="form-control style-4 js-moneyOrderConfirmNumber" value="{{number}}" style="padding: 10px;border: none;border-bottom: solid 2px #c9c9c9;transition: border 0.3s;background-color: white;font-size: 18px;" readonly>
+      </div>
+    {{/if}}
+      {{#if rows}}
+        <div class="form-group">
+            <label class="control-label" for="time">MO Amount : </label>
+            <input type="text" class="form-control style-4 js-moneyOrderConfirmAmount" value="{{rows}}" style="padding: 10px;border: none;border-bottom: solid 2px #c9c9c9;transition: border 0.3s;background-color: white;font-size: 18px;" readonly>
+        </div>
+        {{/if}}
+
+        <div class="form-group">
+            <button class="btn btn--action btn-block js-moneyOrderConfirmSubmit" data-cashed="" style="background-color:#00985C">Continue</button>
+        </div>
+    </form>
+    <div>
+</div>

@@ -1,0 +1,210 @@
+<div class="row">
+    <div class="col-sm-10 col-sm-offset-1">
+        <form style="background-color: white;text-align: center;padding: 20px;border-radius: 5px">
+          <div class="row">
+             <div class="col-sm-2" style="margin-top: -10px;margin-bottom: 20px"><center><strong><h4>Ordered</h4></strong></center></div>
+          </div>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="row">
+                        <div class="col-sm-8">
+                            <label class="control-label col-xs-3" for="time">Date</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-sm-10">
+                            <input type="text" class="form-control js-createOrderDate" style="padding: 10px;border: none;border-bottom: solid 2px #c9c9c9;transition: border 0.3s;background-color: white;font-size: 18px;" disabled />
+                        </div>
+                        <div class="col-sm-2">
+                            <span class="fa fa-calendar fa-2x"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label class="control-label" for="intials">By</label>
+                        <input type="text" class="form-control style-4 js-empOrderIntial" name="intials" style="padding: 10px;border: none;border-bottom: solid 2px #c9c9c9;transition: border 0.3s;background-color: white;font-size: 20px;" disabled>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-sm-10 col-sm-offset-1">
+        <form style="background-color: white;text-align: center;padding: 20px;border-radius: 5px">
+            <div class="row">
+               <div class="col-sm-2" style="margin-top: -10px;margin-bottom: 20px"><center><strong><h4>Received</h4></strong></center></div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="row">
+                        <div class="col-sm-8">
+                            <label class="control-label col-xs-3" for="time">Date</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-sm-10">
+                            <input type="text" class="form-control js-receivedOrderDate" style="padding: 10px;border: none;border-bottom: solid 2px #c9c9c9;transition: border 0.3s;background-color: white;font-size: 18px;" readonly />
+                        </div>
+                        <div class="col-sm-2">
+                            <span class="fa fa-calendar fa-2x"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label class="control-label" for="intials">By</label>
+                          {{#if receivedDetails.received_by}}
+                            <input type="text" class="form-control style-4 js-receiveOrderIntial" value="{{receivedDetails.received_by}}" name="intials" style="padding: 10px;border: none;border-bottom: solid 2px #c9c9c9;transition: border 0.3s;background-color: white;font-size: 20px;" readonly>
+                            {{else}}
+                            <input type="text" class="form-control style-4 js-receiveOrderIntial" name="intials" style="padding: 10px;border: none;border-bottom: solid 2px #c9c9c9;transition: border 0.3s;background-color: white;font-size: 20px;">
+                          {{/if}}
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-sm-2 col-sm-offset-2"></div>
+    <div class="col-sm-2"><center><h4>Ordered</h4></center></div>
+    <div class="col-sm-2"><center><h4>Received</h4></center></div>
+</div>
+<div class="row">
+    <div class="col-sm-2 col-sm-offset-2">
+        <form style="background-color: white;text-align: center;padding: 20px;border-radius: 5px">
+            <table class="table" cellspacing="0" width="100%">
+                <thead>
+                    <tr class="card">
+                        <th>Type</th>
+                    </tr>
+                </thead>
+                <tbody id="js-createOrderBody">
+                    {{#each denominations}}
+                        <tr class="card" style="height: 58px">
+                            <td class="mytable">{{name}}</td>
+                        </tr>
+                    {{/each}}
+                    <tr class="card" style="height: 58px">
+                        <td class="mytable">Total</td>
+                    </tr>
+                </tbody>
+            </table>
+        </form>
+    </div>
+    <div class="col-sm-2">
+      <form style="background-color: white;text-align: center;padding: 20px;border-radius: 5px">
+          <table class="table" cellspacing="0" width="100%">
+              <thead>
+                  <tr class="card">
+                      <th>$ Amount</th>
+                  </tr>
+              </thead>
+              <tbody id="js-createOrderBody">
+                  {{#each denominations}}
+                      <tr class="card">
+                          <td class="mytable">
+                            <input type="number" class="form-control" value="{{order_amount}}" disabled>
+                          </td>
+                      </tr>
+                  {{/each}}
+                  <tr class="card">
+                      <td class="mytable">
+                        <input type="number" class="form-control" value="{{total}}" disabled>
+                      </td>
+                  </tr>
+              </tbody>
+          </table>
+      </form>
+    </div>
+    <div class="col-sm-2">
+      <form style="background-color: white;text-align: center;padding: 20px;border-radius: 5px">
+          <table class="table" cellspacing="0" width="100%">
+              <thead>
+                  <tr class="card">
+                      <th>$ Amount</th>
+                  </tr>
+              </thead>
+              <tbody class="js-receivedOrderBody" data-total="{{total}}">
+                  {{#each denominations}}
+                  {{#equaltoo received_status "Complete"}}
+                  <tr class="card">
+                      <td class="mytable" data-currencyId="{{id}}" data-currency="{{currency}}">
+                        <input type="number" min=0 class="form-control js-receivedEntry" value="{{received_amount}}" disabled>
+                      </td>
+                  </tr>
+                  {{else}}
+                  <tr class="card">
+                      <td class="mytable" data-currencyId="{{id}}" data-currency="{{currency}}">
+                        <input type="number" min=0 class="form-control js-receivedEntry" value="{{received_amount}}" step="{{#parseNumber Amount}}{{value}}{{/parseNumber}}">
+                      </td>
+                  </tr>
+                  {{/equaltoo}}
+                  {{/each}}
+                  <tr class="card">
+                      <td class="mytable" data-currencyId="{{id}}">
+                        <input type="number" class="form-control js-receivedTotal" value="{{#denominationTotal denominations}}{{received_amount}}{{/denominationTotal}}" readonly="">
+                      </td>
+                  </tr>
+              </tbody>
+          </table>
+      </form>
+    </div>
+</div>
+
+  {{#equaltoo status 'Complete'}}
+      <div class="row" style="display: none">
+          <div class="col-sm-5 col-sm-offset-5">
+              <div class="row">
+                  <div class="col-sm-4">
+                      <button class="btn btn--dark btn-block js-receiveOrder-actions" data-changeOrderId="" data-accType="Save" data-loading-text="Loading...">Save</button>
+                  </div>
+                  <div class="col-sm-4">
+                      <button class="btn btn--action btn-block js-receiveOrder-actions" data-changeOrderId="" data-accType="Complete">Complete</button>
+                  </div>
+              </div>
+          </div>
+      </div>
+      {{else}}
+      <div class="row">
+          <div class="col-sm-5 col-sm-offset-5">
+              <div class="row">
+                  <div class="col-sm-4">
+                      <button class="btn btn--dark btn-block js-receiveOrder-actions" data-changeOrderId="" data-accType="Save" data-loading-text="Loading...">Save</button>
+                  </div>
+                  <div class="col-sm-4">
+                      <button class="btn btn--action btn-block js-receiveOrder-actions" data-changeOrderId="" data-accType="Complete">Complete</button>
+                  </div>
+              </div>
+          </div>
+      </div>
+  {{/equaltoo}}
+
+  <div class="modal fade" id="js-userConfirmation" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+          </button>
+          <br>
+          <form class="form-horizontal">
+            <div class="row" style="position:relative; width:80%; left:12%">
+              <div class="form-group">
+                <center>
+                  <p>
+                    <h4>The received amount is greater than ordered amount.Are you sure you want to save the amount ?</h4></p>
+                </center>
+              </div>
+            </div>
+              <div class="row">
+                <div class="btn btn-danger col-sm-2 col-sm-offset-4" id="js-user-confirmation-no" data-dismiss="modal">No</div>
+                <div class="btn btn-success col-sm-2 col-sm-offset-1" id="js-user-confirmation-Yes" data-obj="">Yes</div>
+              </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
